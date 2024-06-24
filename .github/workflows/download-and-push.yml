@@ -16,11 +16,13 @@ jobs:
 
       - name: Download databases
         run: |
+          set -x
           docker pull athlon1600/maxmind-download:latest
           docker run --rm -v $(pwd)/databases:/maxmind -e ACCOUNT_ID=${{ secrets.ACCOUNT_ID }} -e LICENSE_KEY=${{ secrets.LICENSE_KEY }} athlon1600/maxmind-download
 
       - name: Push files
         run: |
+          set -x
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add databases/*
