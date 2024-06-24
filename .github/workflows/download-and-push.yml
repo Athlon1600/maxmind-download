@@ -1,10 +1,9 @@
 name: Download databases
 
-on: [ workflow_dispatch ]
-
-#on:
-#  schedule:
-#    - cron: '0 0 * * *'
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   download_and_push:
@@ -30,3 +29,9 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Purge CDN cache
+        run: |
+          set -x
+          curl -i -L "https://purge.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-ASN.mmdb"
+          curl -i -L "https://purge.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-City.mmdb"
