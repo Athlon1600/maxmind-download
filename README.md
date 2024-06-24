@@ -24,9 +24,12 @@ docker run --rm -v /usr/share/GeoIP:/maxmind -e ACCOUNT_ID=xxx -e LICENSE_KEY=xx
 
 :heavy_check_mark: Database files will be downloaded to `/usr/share/GeoIP` directory.
 
+You are limited to **30** downloads in a 24-hour period as per:  
+https://support.maxmind.com/hc/en-us/articles/4408216129947-Download-and-Update-Databases#h_01G3XX4YD33TBJ66DYEW7XF707
+
 ## :earth_americas: CDN Links
 
-Since `databases` directory of this repo will always have up-to-date database files, which you can download via CDN:
+`databases` directory of this repo will always contain up-to-date database files, which you can download directly via CDN:
 
 ```text
 https://cdn.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-ASN.mmdb
