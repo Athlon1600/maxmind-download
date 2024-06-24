@@ -1,0 +1,30 @@
+name: Download databases
+
+on: [ workflow_dispatch ]
+
+#on:
+#  schedule:
+#    - cron: '0 0 * * *'
+
+jobs:
+  download_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download databases
+        run: |
+          docker pull athlon1600/maxmind-download:latest
+          docker run --rm -v $(pwd)/databases:/maxmind -e ACCOUNT_ID=${{ secrets.ACCOUNT_ID }} -e LICENSE_KEY=${{ secrets.LICENSE_KEY }} athlon1600/maxmind-download
+
+      - name: Push files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add databases/*
+          git commit -m 'Add new database files'
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
