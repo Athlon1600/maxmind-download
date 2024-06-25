@@ -25,13 +25,13 @@ jobs:
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add databases/*
-          git commit -m 'Add new database files'
+          git commit -m 'Add new database files' || echo "No changes to commit" && exit 0
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Purge CDN cache
         run: |
-          set -x
+          set -ex
           curl -i -L "https://purge.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-ASN.mmdb"
           curl -i -L "https://purge.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-City.mmdb"
