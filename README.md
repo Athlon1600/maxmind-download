@@ -32,6 +32,13 @@ https://support.maxmind.com/hc/en-us/articles/4408216129947-Download-and-Update-
 `databases` directory of this repo will always contain up-to-date database files, which you can download directly via CDN:
 
 ```text
+https://github.com/Athlon1600/maxmind-download/raw/master/databases/GeoLite2-ASN.mmdb
+https://github.com/Athlon1600/maxmind-download/raw/master/databases/GeoLite2-City.mmdb
+```
+
+jsDelivr CDN:
+
+```text
 https://cdn.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-ASN.mmdb
 https://cdn.jsdelivr.net/gh/athlon1600/maxmind-download@master/databases/GeoLite2-City.mmdb
 ```
